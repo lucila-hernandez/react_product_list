@@ -5,4 +5,5 @@ const categories = data.reduce((counts, product) => {
   return counts;
 }, {});
 
+
 export { categories };
