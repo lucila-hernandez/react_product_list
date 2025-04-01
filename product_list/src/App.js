@@ -1,16 +1,16 @@
 import './App.css';
-import { categories } from './data';
+import { categoryList } from './data';
 
 function App() {
-  console.log(categories);
+  console.log(categoryList);
 
   return (
     <div>
-      <h1>Product Categories</h1>
+      <h1>Product Categories and Counts</h1>
       <ul>
-        {Object.entries(categories).map(([category, count], index) => (
+        {categoryList.map((item, index) => (
           <li key={index}>
-            {category}: {count}
+            {item.name}: {item.count} 
           </li>
         ))}
       </ul>

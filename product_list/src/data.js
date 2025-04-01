@@ -5,5 +5,9 @@ const categories = data.reduce((counts, product) => {
   return counts;
 }, {});
 
+const categoryList = Object.entries(categories).map(([category, count]) => ({
+  name: category, // Change 'category' to 'name'
+  count,
+}));
 
-export { categories };
+export { categoryList };
