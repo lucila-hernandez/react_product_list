@@ -8,8 +8,10 @@ function App() {
     <div>
       <h1>Product Categories</h1>
       <ul>
-        {categories.map((category, index) => (
-          <li key={index}>{category}</li>
+        {Object.entries(categories).map(([category, count], index) => (
+          <li key={index}>
+            {category}: {count}
+          </li>
         ))}
       </ul>
     </div>
