@@ -10,4 +10,9 @@ const categoryList = Object.entries(categories).map(([category, count]) => ({
   count,
 }));
 
-export { categoryList };
+const priceList = data.map(product => ({
+    name: product.name,
+    price: product.price
+}));
+
+export { categoryList, priceList };
