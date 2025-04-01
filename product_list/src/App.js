@@ -1,10 +1,7 @@
 import './App.css';
-import { categoryList, priceList } from './data';
+import { categoryList, priceList, expensiveProducts, totalInventoryValue } from './data';
 
 function App() {
-  console.log(categoryList);
-  console.log(priceList);
-
   return (
     <div>
       <h1>Product Categories and Counts</h1>
@@ -24,6 +21,18 @@ function App() {
           </li>
         ))}
       </ul>
+
+      <h1>Expensive Products (Costing More Than $50)</h1>
+      <ul>
+        {expensiveProducts.map((product, index) => (
+          <li key={index}>
+            {product.name}: {product.price}
+          </li>
+        ))}
+      </ul>
+
+      <h1>Total Inventory Value</h1>
+      <p>${totalInventoryValue.toFixed(2)}</p> 
     </div>
   );
 }
