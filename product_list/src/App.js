@@ -1,5 +1,5 @@
+//import { categoryList, priceList, expensiveProducts, totalInventoryValue } from './data';
 import './App.css';
-import { categoryList, priceList, expensiveProducts, totalInventoryValue } from './data';
 import data from './data.json'; 
 
 const categories = [...new Set(data.map(product => product.category))];
@@ -9,6 +9,19 @@ const CategoryButton = ({ name }) => {
     <button className="category-button">
       {name}
     </button>
+  );
+};
+
+const ProductCard = ({ product }) => {
+  return (
+    <div className="product-card">
+      <h2>{product.name}</h2>
+      <p><strong>Category:</strong> {product.category}</p>
+      <p><strong>Price:</strong> {product.price}</p>
+      <p><strong>Rating:</strong> {product.rating} ⭐</p>
+      <p><strong>Description:</strong> {product.description}</p>
+      <p><strong>Units in Stock:</strong> {product.units}</p>
+    </div>
   );
 };
 
@@ -22,35 +35,12 @@ function App() {
         ))}
       </div>
 
-      <h1>Product Categories and Counts</h1>
-      <ul>
-        {categoryList.map((item, index) => (
-          <li key={index}>
-            {item.name}: {item.count}
-          </li>
+      <h1>Product List</h1>
+      <div className="product-list">
+        {data.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
-      </ul>
-
-      <h1>Product Prices</h1>
-      <ul>
-        {priceList.map((item, index) => (
-          <li key={index}>
-            {item.name}: {item.price}
-          </li>
-        ))}
-      </ul>
-
-      <h1>Expensive Products (Costing More Than $50)</h1>
-      <ul>
-        {expensiveProducts.map((product, index) => (
-          <li key={index}>
-            {product.name}: {product.price}
-          </li>
-        ))}
-      </ul>
-
-      <h1>Total Inventory Value</h1>
-      <p>${totalInventoryValue.toFixed(2)}</p> 
+      </div>
     </div>
   );
 }
