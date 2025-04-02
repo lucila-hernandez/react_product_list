@@ -1,12 +1,12 @@
-//import { categoryList, priceList, expensiveProducts, totalInventoryValue } from './data';
+import { useState } from 'react';
 import './App.css';
 import data from './data.json'; 
 
 const categories = [...new Set(data.map(product => product.category))];
 
-const CategoryButton = ({ name }) => {
+const CategoryButton = ({ name, onClick }) => {
   return (
-    <button className="category-button">
+    <button className="category-button" onClick={() => onClick(name)}>
       {name}
     </button>
   );
@@ -26,18 +26,27 @@ const ProductCard = ({ product }) => {
 };
 
 function App() {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const filteredProducts = selectedCategory
+    ? data.filter(product => product.category === selectedCategory)
+    : data;
+
   return (
     <div>
       <h1>Product Categories</h1>
       <div className="category-buttons">
+        <button className="category-button" onClick={() => setSelectedCategory(null)}>
+          Show All
+        </button>
         {categories.map((category, index) => (
-          <CategoryButton key={index} name={category} />
+          <CategoryButton key={index} name={category} onClick={setSelectedCategory} />
         ))}
       </div>
 
       <h1>Product List</h1>
       <div className="product-list">
-        {data.map((product) => (
+        {filteredProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
